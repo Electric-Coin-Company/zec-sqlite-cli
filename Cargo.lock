@@ -2466,6 +2466,19 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "7f24254aa9a54b5c858eaee2f5bccdb46aaf0e486a595ed5fd8f86ba55232a70"
 
 [[package]]
+name = "hidapi"
+version = "2.6.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "03b876ecf37e86b359573c16c8366bc3eba52b689884a0fc42ba3f67203d2a8b"
+dependencies = [
+ "cc",
+ "cfg-if 1.0.0",
+ "libc",
+ "pkg-config",
+ "windows-sys 0.48.0",
+]
+
+[[package]]
 name = "hkdf"
 version = "0.12.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -3062,9 +3075,25 @@ dependencies = [
 ]
 
 [[package]]
+name = "ledger-transport-hid"
+version = "0.11.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "a4e34341e2708fbf805a9ada44ef6182170c6464c4fc068ab801abb7562fd5e8"
+dependencies = [
+ "byteorder",
+ "cfg-if 1.0.0",
+ "hex",
+ "hidapi",
+ "ledger-transport",
+ "libc",
+ "log",
+ "thiserror 1.0.69",
+]
+
+[[package]]
 name = "ledger-zcash"
 version = "2.0.0"
-source = "git+https://github.com/Zondax/ledger-zcash-rs.git?rev=e5f3e6d633ea316759b153c7edacaaabf580f32c#e5f3e6d633ea316759b153c7edacaaabf580f32c"
+source = "git+https://github.com/zecdev/ledger-zcash-rs.git?branch=zec-sqlite-support#7b2ca518ec7414c98308d75648549201044bba20"
 dependencies = [
  "byteorder",
  "cfg-if 1.0.0",
@@ -3722,6 +3751,7 @@ dependencies = [
  "memuse",
  "nonempty",
  "pasta_curves",
+ "proptest",
  "rand",
  "reddsa",
  "serde",
@@ -4968,11 +4998,13 @@ dependencies = [
  "jubjub",
  "lazy_static",
  "memuse",
+ "proptest",
  "rand",
  "rand_core",
  "redjubjub",
  "subtle",
  "tracing",
+ "visibility",
  "zcash_note_encryption",
  "zcash_spec",
  "zip32",
@@ -7673,6 +7705,7 @@ dependencies = [
  "memuse",
  "nonempty",
  "orchard",
+ "proptest",
  "rand_core",
  "sapling-crypto",
  "secrecy 0.8.0",
@@ -7721,6 +7754,7 @@ dependencies = [
  "memuse",
  "nonempty",
  "orchard",
+ "proptest",
  "rand",
  "rand_core",
  "redjubjub",
@@ -7819,6 +7853,7 @@ dependencies = [
  "anyhow",
  "bip0039",
  "bip32",
+ "bytemuck",
  "chrono",
  "crossterm",
  "futures-util",
@@ -7827,7 +7862,11 @@ dependencies = [
  "image",
  "iso_currency",
  "jubjub",
+ "lazy_static",
+ "ledger-transport",
+ "ledger-transport-hid",
  "ledger-zcash",
+ "ledger-zondax-generic",
  "minicbor",
  "nokhwa",
  "orchard",
@@ -7836,6 +7875,7 @@ dependencies = [
  "qrcode",
  "ratatui",
  "rayon",
+ "redjubjub",
  "roaring",
  "rqrr",
  "rusqlite",
@@ -7864,6 +7904,7 @@ dependencies = [
  "zcash_transparent",
  "zip32",
  "zip321",
+ "zx-bip44",
 ]
 
 [[package]]
