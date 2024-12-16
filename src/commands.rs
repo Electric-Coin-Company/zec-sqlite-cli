@@ -8,6 +8,8 @@ pub(crate) mod enhance;
 pub(crate) mod import_ufvk;
 pub(crate) mod init;
 pub(crate) mod init_fvk;
+#[cfg(feature = "ledger-support")]
+pub(crate) mod init_ledger;
 pub(crate) mod list_accounts;
 pub(crate) mod list_addresses;
 pub(crate) mod list_tx;
