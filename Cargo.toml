@@ -31,11 +31,11 @@ uuid = "1"
 orchard = { version = "0.10", default-features = false }
 pczt = "0.1"
 sapling = { package = "sapling-crypto", version = "0.4" }
-transparent = { package = "zcash_transparent", version = "0.1", features = ["test-dependencies"] }
+transparent = { package = "zcash_transparent", version = "0.1", features = ["test-dependencies", "unstable-ledger"] }
 zcash_address = "0.6"
 zcash_client_backend = { version = "0.16", features = ["lightwalletd-tonic-tls-webpki-roots", "orchard", "pczt", "tor"] }
 zcash_client_sqlite = { version = "0.14", features = ["unstable", "orchard", "serde"] }
-zcash_keys = { version = "0.6", features = ["unstable", "orchard"] }
+zcash_keys = { version = "0.6", features = ["unstable", "orchard", "test-dependencies"] }
 zcash_primitives = "0.21"
 zcash_proofs = "0.21"
 zcash_protocol = "0.4"
@@ -65,6 +65,19 @@ roaring = { version = "0.10", optional = true }
 tokio-util = { version = "0.7", optional = true }
 tui-logger = { version = "0.14", optional = true, features = ["tracing-support"] }
 
+# Ledger Support 
+ledger-zcash = { git = "https://github.com/zecdev/ledger-zcash-rs.git", branch = "zec-sqlite-support", optional = true }
+zx-bip44 = { version = "0.1.0", optional = true }
+redjubjub = { version = "0.7", optional = true }
+ledger-transport = { version = "0.11", optional = true }
+ledger-zondax-generic = { version = "0.11", optional = true }
+ledger-transport-hid = { version = "0.11", optional = true }
+
+# Manage HidApi instance. 
+lazy_static = { version = "1.5.0", optional = true }
+bytemuck = { version = "1.20.0", optional = true }
+
+
 [features]
 default = ["transparent-inputs"]
 pczt-qr = ["dep:image", "dep:minicbor", "dep:nokhwa", "dep:qrcode", "dep:rqrr", "dep:ur"]
@@ -78,3 +91,13 @@ tui = [
     "dep:tokio-util",
     "dep:tui-logger",
 ]
+ledger-support = [
+    "dep:ledger-zcash",
+    "dep:zx-bip44",
+    "dep:ledger-transport",
+    "dep:ledger-zondax-generic",
+    "dep:bytemuck",
+]
+
+[patch.crates-io]
+sapling-crypto = { git = "https://github.com/zcash/sapling-crypto.git", rev = "231f81911628499a8877be57e66e60c09e55bdea" }
